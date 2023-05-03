@@ -53,7 +53,7 @@ jobs:
 
       - name: Buildando aplicacao
         run: npm run build
-
+        
       - name: Deploy
         run: | 
           ssh google-cloud 'sudo systemctl stop react-app'
