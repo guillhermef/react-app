@@ -25,9 +25,9 @@ jobs:
             StrictHostKeyChecking no
           END
         env:
-          SSH_USER: ${{ secrets.GOOGLE_CLOUD_SSH_USER }}
+          SSH_USER: ${{ secrets.GOOGLE_CLOUD_USER }}
           SSH_KEY: ${{ secrets.GOOGLE_CLOUD_SSH_KEY }}
-          SSH_HOST: ${{ secrets.GOOGLE_CLOUD_SSH_HOST }}
+          SSH_HOST: ${{ secrets.GOOGLE_CLOUD_HOST }}
 
       - name: checkout
         uses: actions/checkout@v3
@@ -53,7 +53,7 @@ jobs:
 
       - name: Buildando aplicacao
         run: npm run build
-        
+
       - name: Deploy
         run: | 
           ssh google-cloud 'sudo systemctl stop react-app'
