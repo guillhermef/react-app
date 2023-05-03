@@ -1,1 +1,1 @@
-Jogo da memória feito em react.
+Jogo da memória feito em react JS.
