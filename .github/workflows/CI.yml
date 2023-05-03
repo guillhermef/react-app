@@ -30,7 +30,7 @@ jobs:
         env:
           CI: true
 
-      - name: Sonar
+      - name: executando sonar
         uses: SonarSource/sonarcloud-github-action@master
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
