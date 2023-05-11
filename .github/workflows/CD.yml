@@ -30,10 +30,16 @@ jobs:
           SSH_KEY: ${{ secrets.GOOGLE_CLOUD_SSH_KEY }}
           SSH_HOST: ${{ secrets.GOOGLE_CLOUD_HOST }}
 
-      - name: Checkout branch
+      - name: checkout
+        uses: actions/checkout@v2
+      - name: Checkout correct branch
         run: |
-          cd $GITHUB_WORKSPACE
-          git checkout release
+          if [ "${{ github.ref }}" = "refs/heads/release" ]; then
+            git checkout release
+          else
+            git checkout main
+          fi
+        working-directory: ${{ github.workspace }}
 
       - name: Configurando nodeJS
         uses: actions/setup-node@v3
