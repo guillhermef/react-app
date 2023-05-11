@@ -30,8 +30,9 @@ jobs:
           SSH_KEY: ${{ secrets.GOOGLE_CLOUD_SSH_KEY }}
           SSH_HOST: ${{ secrets.GOOGLE_CLOUD_HOST }}
 
-      - name: checkout
-        uses: actions/checkout@v3
+      - name: Checkout branch
+        if: startsWith(github.ref, 'refs/heads/release')
+        run: git checkout release
 
       - name: Configurando nodeJS
         uses: actions/setup-node@v3
