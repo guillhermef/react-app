@@ -2,7 +2,6 @@ name: CD
 on:
   push: 
     branches:
-      - main
       - release
 
   workflow_dispatch:
@@ -32,8 +31,6 @@ jobs:
 
       - name: Checkout do código
         uses: actions/checkout@v2
-        with:
-          ref: ${{ github.ref }}
 
       - name: Configurando nodeJS
         uses: actions/setup-node@v3
@@ -56,18 +53,8 @@ jobs:
 
       - name: Buildando aplicacao
         run: npm run build
-
-      - name: Deploy em produção
-        if: github.ref == 'refs/heads/main'
-        run: | 
-          ssh google-cloud 'sudo systemctl stop react-app'
-          ssh google-cloud 'sudo rm -rf /app/react-app'
-          scp -r build google-cloud:/home/gitactions/react-app
-          ssh google-cloud 'sudo mv /home/gitactions/react-app /app/react-app'
-          ssh google-cloud 'sudo systemctl start react-app'
-
+        
       - name: Deploy em homologação
-        if: github.ref == 'refs/heads/release'
         run: | 
           ssh google-cloud 'sudo systemctl stop react-app-homolog'
           ssh google-cloud 'sudo rm -rf /app/react-app-homolog'
