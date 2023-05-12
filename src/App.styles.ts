@@ -6,7 +6,7 @@ export const Container = styled.div`
     margin: auto;
     display: flex;
     padding: 50px 0;
-
+    align-items: center;
     @media (max-width: 750px) {
         flex-direction: column;
     }
@@ -23,7 +23,7 @@ export const Info = styled.div`
     }
 ` 
 
-export const LogoLink = styled.a`
+export const LogoLink = styled.span`
     display: block;
 `
 
