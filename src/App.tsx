@@ -119,7 +119,6 @@ const App = () => {
 
   return (
     <div>
-      <h1>HOMOLOG</h1>
       <C.Container>
         <C.Info>
         <C.LogoLink href="">
